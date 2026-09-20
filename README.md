@@ -76,3 +76,31 @@ export default defineConfig([
 ])
 
 ```
+
+#Notes
+
+This DVD logo uses a mask instead of an image.
+
+```js
+maskImage: `url(${dvdLogo})`
+```
+Use this image to determine which parts of this element are visible
+
+```js
+maskSize: "contain"
+```
+Makes the entire DVD logo fit inside your 160 × 160 element without stretching it
+
+```js
+maskPosition: "center"
+```
+Centers the logo inside the div
+
+```js
+maskRepeat: "no-repeat"
+```
+Prevents the PNG from tiling
+
+```js
+maskImage: `url(${dvdLogo})`
+```

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import hero from "./assets/hero.png";
+import dvdLogo from "./assets/dvd-logo.png";
 
 type Vector = {
   x: number;
@@ -127,8 +127,6 @@ export function DvdLogo() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-
-
   return (
     <>
       <div
@@ -141,20 +139,32 @@ export function DvdLogo() {
           background: "#111",
         }}
       >
-        <img
+        <div
           ref={logoRef}
-          src={hero}
-          alt="DVD Video"
           style={{
             position: "absolute",
-            border: "none",
-            width: 160,
+            width: 250,
+            height: 117,
+            backgroundColor: "blue",
+            // border: "5px red solid",
+
+            maskImage: `url(${dvdLogo})`,
+            maskSize: "contain",
+            maskPosition: "center",
+            maskRepeat: "no-repeat",
+
+            WebkitMaskImage: `url(${dvdLogo})`,
+            WebkitMaskSize: "contain",
+            WebkitMaskPosition: "center",
+            WebkitMaskRepeat: "no-repeat",
+
             left: 0,
             top: 0,
             transform: `translate(${pos.x}px, ${pos.y}px)`,
             willChange: "transform",
           }}
         />
+
       </div>
     </>
   );
