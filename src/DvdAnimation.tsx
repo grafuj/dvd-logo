@@ -8,10 +8,27 @@ type Vector = {
 };
 
 export function DvdAnimation() {
-  const { xVelocity, yVelocity, color } = useDvd();
+  const { xVelocity, yVelocity, color, setColor } = useDvd();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+
+  const changeColor = () => {
+    const colors = [
+      "#ff0000",
+      "#00ff00",
+      "#0000ff",
+      "#ffff00",
+      "#ff00ff",
+      "#00ffff",
+      "#ff6600",
+      "#ffffff",
+    ];
+
+    const newColor = colors[Math.floor(Math.random() * colors.length)];
+    setColor(newColor);
+  };
+
 
   const position = useRef<Vector>({
     x: 50,
@@ -55,14 +72,17 @@ export function DvdAnimation() {
         const maxX = container.clientWidth - logo.offsetWidth;
         const maxY = container.clientHeight - logo.offsetHeight;
 
+        //bounces
         if (x <= 0 || x >= maxX) {
           x = Math.max(0, Math.min(x, maxX));
           vx *= -1;
+          changeColor();
         }
 
         if (y <= 0 || y >= maxY) {
           y = Math.max(0, Math.min(y, maxY));
           vy *= -1;
+          changeColor();
         }
 
         position.current = { x, y };
@@ -78,7 +98,7 @@ export function DvdAnimation() {
     frame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [setColor]);
 
   return (
     <div

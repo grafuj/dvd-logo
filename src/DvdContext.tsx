@@ -2,7 +2,7 @@ import {
   createContext,
   useContext,
   useState,
-  type ReactNode,
+  type ReactNode
 } from "react";
 
 type DvdContextType = {
